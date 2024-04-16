@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Utilizando Funções</title>
+   <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Utilizando as Funções</h1>
+
+        <label for="inputString">Digite uma lista de números separados por vírgula:</label>
+        <input type="text" id="inputString">
+        <button onclick="processarEntrada()">Processar</button>
+
+        <div id="output"></div>
+    </div>
+
+    <script>
+        function processarEntrada() {
+            const entrada = document.getElementById('inputString').value;
+            const numeros = entrada.split(',').map(num => parseInt(num.trim()));
+
+            // Exemplo de forEach
+            const resultadoForEach = [];
+            numeros.forEach(num => resultadoForEach.push(num));
+
+            // Exemplo de map
+            const numerosAoQuadrado = numeros.map(num => num * num);
+
+            // Exemplo de filter
+            const numerosPares = numeros.filter(num => num % 2 === 0);
+
+            // Exemplo de reduce
+            const soma = numeros.reduce((acumulador, valorAtual) => acumulador + valorAtual, 0);
+
+            // Exemplo de setTimeout
+            setTimeout(() => {
+                console.log("Timeout finalizado");
+            }, 2000);
+
+            // Exemplo de fetch (busca dados fictícios em JSON)
+            fetch('https://jsonplaceholder.typicode.com/posts/1')
+            .then(response => response.json())
+            .then(data => console.log("Exemplo de fetch:", data))
+            .catch(error => console.error("Erro no fetch:", error));
+
+            // Exibindo resultados na página
+            const output = document.getElementById('output');
+            output.innerHTML = `
+                <p><strong>Números:</strong> ${numeros.join(', ')}</p>
+                <p><strong>Números ao quadrado:</strong> ${numerosAoQuadrado.join(', ')}</p>
+                <p><strong>Números pares:</strong> ${numerosPares.join(', ')}</p>
+                <p><strong>Soma:</strong> ${soma}</p>
+            `;
+        }
+    </script>
+</body>
+</html>
